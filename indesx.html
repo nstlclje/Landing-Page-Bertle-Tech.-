@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel and Modal</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional Styles for Carousel */
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      height: 200px; /* Adjust height as needed */
+    }
+
+    .carousel-item {
+      scroll-snap-align: center;
+      flex: 0 0 auto;
+      width: 100%; /* Ensure full width */
+    }
+
+    /* Additional Styles for Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Carousel -->
+<div class="carousel">
+    <div class="carousel-item" style="background-color: #D5D5D5;">Innovations
+      <img src="assets/img/portfolio/portfolio-1.jpg" alt="Artificial Intelligence (AI) in Healthcare" style="width: 100%; height: auto;">
+      <img src="assets/img/portfolio/portfolio-3.png" alt="Renewable Energy" style="width: 100%; height: auto;">
+      <img src="assets/img/portfolio/portfolio-6.png" alt="3D Printing Technology" style="width: 100%; height: auto;">
+    </div>
+    <div class="carousel-item" style="background-color: #D5D5D5;">Designs
+      <img src="assets/img/portfolio/portfolio-4.jpg" alt="User Interface (UI) Design" style="width: 100%; height: auto;">
+      <img src="assets/img/portfolio/portfolio-7.jpg" alt="Architectural Design and Smart Cities" style="width: 100%; height: auto;">
+      <img src="assets/img/portfolio/portfolio-8.jpg" alt="Product Design and Ergonomics" style="width: 100%; height: auto;">
+    </div>
+    <div class="carousel-item" style="background-color: #D5D5D5;">Solutions
+      <img src="assets/img/portfolio/portfolio-2.jpg" alt="Cybersecurity Solutions" style="width: 100%; height: auto;">
+      <img src="assets/img/portfolio/portfolio-5.jpg" alt="Supply Chain Optimization" style="width: 100%; height: auto;">
+      <img src="assets/img/portfolio/portfolio-9.jpg" alt="Data Analytics and Business Intelligence" style="width: 100%; height: auto;">
+    </div>
+  </div>
+  
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>
+        Innovations:
+    <ul>
+        Artificial Intelligence (AI) in Healthcare,
+        Renewable Energy,
+        3D Printing Technology.
+    </ul>
+    </p>
+
+    <p>
+        Designs:
+    <ul>
+        User Interface (UI) Design,
+        Architectural Design and Smart Cities,
+        Product Design and Ergonomics.
+    </ul>
+    </p>
+
+    <p>
+        Solutions:
+    <ul>
+        Cybersecurity Solutions,
+        Supply Chain Optimization,
+        Data Analytics and Business Intelligence.
+    </ul>
+    </p>
+
+  </div>
+</div>
+
+<!-- Button to open the modal -->
+<button id="myBtn">Open</button>
+
+<script>
+  // Modal functionality
+  var modal = document.getElementById("myModal");
+  var btn = document.getElementById("myBtn");
+  var span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // Carousel functionality
+  var carouselItems = document.querySelectorAll('.carousel-item');
+  var carousel = document.querySelector('.carousel');
+
+  carouselItems.forEach(item => {
+    item.style.width = `${carousel.offsetWidth}px`;
+  });
+
+  window.addEventListener('resize', () => {
+    carouselItems.forEach(item => {
+      item.style.width = `${carousel.offsetWidth}px`;
+    });
+  });
+</script>
+
+</body>
+</html>
